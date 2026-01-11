@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authentication.js"
+import gigRoutes from "./routes/gig.js";
 import { connectDB } from "./config/db.js";
 
 dotenv.config();
@@ -20,6 +21,8 @@ app.get("/", (req, res) => {
 // authentication
 app.use("/api/auth", authRoutes);
 
+// gigs 
+app.use("/api/gigs", gigRoutes);
 
 const PORT = process.env.PORT || 5000;
 
