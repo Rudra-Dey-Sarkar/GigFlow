@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authentication.js"
 import gigRoutes from "./routes/gig.js";
+import bidRoutes from "./routes/bid";
 import { connectDB } from "./config/db.js";
 
 dotenv.config();
@@ -17,12 +18,12 @@ app.use(express.json());
 app.get("/", (req, res) => {
     res.send("App running");
 });
-
 // authentication
 app.use("/api/auth", authRoutes);
-
 // gigs 
 app.use("/api/gigs", gigRoutes);
+// bid
+app.use("/api/bids", bidRoutes);
 
 const PORT = process.env.PORT || 5000;
 
