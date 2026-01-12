@@ -61,10 +61,21 @@ export async function login(req, res) {
         secure: process.env.NODE_ENV === "production",
         sameSite: "strict"
     });
-              
+
     res.json({
         id: user._id,
         name: user.name,
         email: user.email
     });
 }
+
+export function logout(req, res) {
+    res.clearCookie("token", {
+        httpOnly: true,
+        sameSite: "strict",
+        secure: process.env.NODE_ENV === "production"
+    });
+
+    res.json({ message: "logged out successfully" });
+}
+

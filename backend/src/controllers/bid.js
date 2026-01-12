@@ -14,6 +14,10 @@ export async function createBid(req, res) {
         return res.status(404).json({ error: "gig not found" });
     }
 
+    if (gig.status !== "open") {
+        return res.status(400).json({ error: "bidding is not allowed on this gig" });
+    }
+
     if (gig.ownerId.toString() === req.user._id.toString()) {
         return res.status(400).json({ error: "you cannot bid on your own gig" });
     }
