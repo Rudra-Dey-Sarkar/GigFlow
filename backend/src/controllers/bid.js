@@ -69,3 +69,11 @@ export async function hire(req, res) {
         res.status(400).json({ error: error.message });
     }
 }
+
+export async function getMyBids(req, res) {
+    const bids = await Bid.find({ freelancerId: req.user._id })
+        .populate("gigId", "title status budget")
+        .sort({ createdAt: -1 });
+
+    res.json(bids);
+}
