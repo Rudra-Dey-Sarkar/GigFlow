@@ -1,5 +1,6 @@
 import { Bid } from "../model/bid.js";
 import { Gig } from "../model/gig.js";
+import { hireBid } from "../services/hire.js";
 
 export async function createBid(req, res) {
     const { gigId, message, price } = req.body;
@@ -52,4 +53,15 @@ export async function getBidsForGig(req, res) {
         .sort({ createdAt: -1 });
 
     res.json(bids);
+}
+
+export async function hire(req, res) {
+    const { bidId } = req.params;
+
+    try {
+        await hireBid(bidId, req.user._id);
+        res.json({ message: "freelancer hired successfully" });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 }
