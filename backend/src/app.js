@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authentication.js"
 import gigRoutes from "./routes/gig.js";
-import bidRoutes from "./routes/bid";
+import bidRoutes from "./routes/bid.js";
 import { connectDB } from "./config/db.js";
 
 dotenv.config();
@@ -16,7 +16,7 @@ app.use(express.json());
 
 // app check
 app.get("/", (req, res) => {
-    res.send("App running");
+    res.send("Server running");
 });
 // authentication
 app.use("/api/auth", authRoutes);

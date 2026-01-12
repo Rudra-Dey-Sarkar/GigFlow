@@ -33,4 +33,4 @@ const bidSchema = new mongoose.Schema(
 // prevent same freelancer bidding twice on same gig
 bidSchema.index({ gigId: 1, freelancerId: 1 }, { unique: true });
 
-export const Bid = mongoose.model("Bid", bidSchema);
+export const Bid = mongoose.model("bid", bidSchema);

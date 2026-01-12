@@ -1,4 +1,4 @@
-import { Gig } from "../models/gig.model.js";
+import { Gig } from "../model/gig.js"
 
 export async function createGig(req, res) {
     const { title, description, budget } = req.body;
