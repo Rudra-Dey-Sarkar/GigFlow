@@ -7,7 +7,9 @@ export default function Navbar() {
         <nav className="flex justify-between p-4 bg-white shadow">
             <h1 className="font-bold">GigFlow</h1>
             {user && (
-                <button onClick={logout} className="text-sm text-red-500">
+                <button 
+                onClick={logout} 
+                className="text-sm text-red-500 font-semibold hover:underline">
                     Logout
                 </button>
             )}
