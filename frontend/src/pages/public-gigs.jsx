@@ -26,7 +26,7 @@ export default function PublicGigs() {
 
     useEffect(() => {
         loadGigs();
-    }, []);
+    }, [user]);
 
     return (
         <div className="p-6 space-y-6">
@@ -43,9 +43,9 @@ export default function PublicGigs() {
 
                         {/* Actions */}
                         {!user ? (
-                            <button 
-                            onClick={()=>setShowAuth(true)}
-                            className="text-sm text-blue-600">
+                            <button
+                                onClick={() => setShowAuth(true)}
+                                className="text-sm text-blue-600">
                                 Login to apply
                             </button>
                         ) : String(gig.ownerId?._id) === String(user._id) ? (
