@@ -55,7 +55,9 @@ export default function Register({ switchMode, onClose }) {
 
                 <button
                     disabled={loading}
-                    className={`w-full bg-black text-white p-2 rounded ${loading ? "bg-gray-500 text-white" : ""}`}>
+                    className={`w-full p-2 rounded text-white
+                              ${loading ? "bg-gray-500 cursor-not-allowed" : "bg-black"}
+                             `}>
                     Register
                 </button>
                 <p className="text-sm text-center">
