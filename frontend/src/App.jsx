@@ -8,7 +8,7 @@ import MyBids from "./pages/my-bids";
 function PrivateRoute({ children }) {
   const { user, loading } = useAuth();
   if (loading) return null;
-  return user ? children : <Navigate to="/login" />;
+  return user ? children : <Navigate to="/" />;
 }
 
 export default function App() {
