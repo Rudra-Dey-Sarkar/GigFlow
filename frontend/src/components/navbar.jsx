@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import AuthModal from "./auth-modal";
+import AuthModal from "./auth/auth-modal";
 import { useAuth } from "../context/auth-context";
 
 export default function Navbar() {

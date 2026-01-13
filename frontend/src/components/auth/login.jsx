@@ -1,17 +1,22 @@
 import { useState } from "react";
-import { useAuth } from "../context/auth-context";
+import { useAuth } from "../../context/auth-context";
 
-export default function Login({ switchMode }) {
+export default function Login({ switchMode, onClose }) {
     const { login } = useAuth();
     const [form, setForm] = useState({ email: "", password: "" });
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
     async function handleSubmit(e) {
         e.preventDefault();
+
         try {
             await login(form);
+            onClose();
         } catch (err) {
             setError(err.message);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -38,10 +43,12 @@ export default function Login({ switchMode }) {
                     onChange={e => setForm({ ...form, password: e.target.value })}
                 />
 
-                <button className="w-full bg-black text-white p-2 rounded">
+                <button
+                    disabled={loading}
+                    className={`w-full bg-black text-white p-2 rounded ${loading ? "bg-gray-500 text-white":""}`}>
                     Login
                 </button>
-                
+
                 <p className="text-sm text-center">
                     New here?{" "}
                     <button

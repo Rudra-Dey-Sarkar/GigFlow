@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useAuth } from "../context/auth-context";
+import { useAuth } from "../../context/auth-context";
 
-export default function Register({ switchMode }) {
+export default function Register({ switchMode, onClose }) {
     const { register } = useAuth();
     const [form, setForm] = useState({
         name: "",
@@ -9,13 +9,18 @@ export default function Register({ switchMode }) {
         password: ""
     });
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
     async function handleSubmit(e) {
+        setLoading(true);
         e.preventDefault();
         try {
             await register(form);
+            onClose();
         } catch (err) {
             setError(err.message);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -48,7 +53,9 @@ export default function Register({ switchMode }) {
                     onChange={e => setForm({ ...form, password: e.target.value })}
                 />
 
-                <button className="w-full bg-black text-white p-2 rounded">
+                <button
+                    disabled={loading}
+                    className={`w-full bg-black text-white p-2 rounded ${loading ? "bg-gray-500 text-white" : ""}`}>
                     Register
                 </button>
                 <p className="text-sm text-center">

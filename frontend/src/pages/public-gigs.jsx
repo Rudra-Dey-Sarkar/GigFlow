@@ -3,7 +3,7 @@ import { api } from "../api/client";
 import { useAuth } from "../context/auth-context";
 import BidForm from "../components/bid/bid-form";
 import Modal from "../components/modal";
-import AuthModal from "../components/auth-modal";
+import AuthModal from "../components/auth/auth-modal";
 
 export default function PublicGigs() {
     const [gigs, setGigs] = useState([]);
