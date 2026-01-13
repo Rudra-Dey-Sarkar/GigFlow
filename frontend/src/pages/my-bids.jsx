@@ -11,6 +11,7 @@ export default function MyBids() {
     return (
         <div className="p-6 space-y-4">
             <h2 className="font-bold text-xl">My Applications</h2>
+            <p className="text-gray-500">You see the bids that you applied</p>
 
             {bids.length === 0 && (
                 <p className="text-gray-500">You haven’t applied to any gigs yet.</p>

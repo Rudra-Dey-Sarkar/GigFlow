@@ -27,6 +27,7 @@ export default function MyGigs() {
                     Post Gig
                 </button>
             </div>
+            <p className="text-gray-500">You see the gigs that you posted</p>
 
             {showCreate && (
                 <Modal onClose={() => setShowCreate(false)}>
@@ -39,13 +40,13 @@ export default function MyGigs() {
                 </Modal>
             )}
 
-            {gigs.map(gig => (
+            {gigs.length>0 ? gigs.map(gig => (
                 <div key={gig._id} className="bg-white p-4 rounded shadow">
                     <h3 className="font-semibold">{gig.title}</h3>
                     <p>Status: {gig.status}</p>
                     <p>Budget: {gig.budget}</p>
                 </div>
-            ))}
+            )) : <div className="text-gray-500">No gigs!</div>}
         </div>
     );
 }
