@@ -10,7 +10,8 @@ import { connectDB } from "./config/db.js";
 dotenv.config();
 
 const corsOptions = {
-  origin: ["http://localhost:3000"],
+  origin: ["http://localhost:3000", "http://localhost:5173"],
+  credentials: true,
   optionsSuccessStatus: 200
 }
 
