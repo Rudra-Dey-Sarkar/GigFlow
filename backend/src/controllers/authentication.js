@@ -79,3 +79,7 @@ export function logout(req, res) {
     res.json({ message: "logged out successfully" });
 }
 
+export function me(req, res) {
+    res.json(req.user);
+}
+

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { api } from "../api/client";
+import { api } from "../../api/client";
 
 export default function CreateGig({ onCreated }) {
     const [form, setForm] = useState({
@@ -19,7 +19,6 @@ export default function CreateGig({ onCreated }) {
                     budget: Number(form.budget)
                 })
             });
-            setForm({ title: "", description: "", budget: "" });
             onCreated();
         } catch (err) {
             setError(err.message);
@@ -46,7 +45,9 @@ export default function CreateGig({ onCreated }) {
                 placeholder="Description"
                 className="w-full border p-2 rounded"
                 value={form.description}
-                onChange={e => setForm({ ...form, description: e.target.value })}
+                onChange={e =>
+                    setForm({ ...form, description: e.target.value })
+                }
             />
 
             <input

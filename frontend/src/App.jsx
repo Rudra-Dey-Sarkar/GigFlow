@@ -5,9 +5,12 @@ import Register from "./pages/register";
 import Gigs from "./pages/gigs";
 import Navbar from "./components/navbar";
 
+
 function Content() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const [mode, setMode] = useState("login");
+
+  if (loading) return null;
 
   if (user) return <Gigs />;
 
