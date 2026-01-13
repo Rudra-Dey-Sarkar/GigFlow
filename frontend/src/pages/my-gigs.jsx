@@ -44,7 +44,7 @@ export default function MyGigs() {
                 <div key={gig._id} className="bg-white p-4 rounded shadow">
                     <h3 className="font-semibold">{gig.title}</h3>
                     <p>Status: {gig.status}</p>
-                    <p>Budget: {gig.budget}</p>
+                    <p>Budget: ₹{gig.budget}</p>
                 </div>
             )) : <div className="text-gray-500">No gigs!</div>}
         </div>

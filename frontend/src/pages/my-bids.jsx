@@ -32,19 +32,20 @@ export default function MyBids() {
                         <span className="font-medium">{bid.gigId.status}</span>
                     </p>
 
-                    <hr className="my-2" />
-
                     {/* My bid details */}
-                    <p className="text-sm">
-                        Your Bid: ₹{bid.price}
-                    </p>
-                    <p className="text-sm text-gray-600">
-                        Message: {bid.message}
-                    </p>
-                    <p className="text-sm">
-                        Bid Status:{" "}
-                        <span className="font-medium">{bid.status}</span>
-                    </p>
+                    <div className="p-2 bg-slate-200 rounded-[5px]">
+                        <p className="text-sm">
+                            Your Bid: ₹{bid.price}
+                        </p>
+                        <p className="text-sm text-gray-600">
+                            Message: {bid.message}
+                        </p>
+                        <p className="text-sm">
+                            Bid Status:{" "}
+                            <span className="font-medium">{bid.status}</span>
+                        </p>
+                    </div>
+
                 </div>
             ))}
         </div>
