@@ -20,7 +20,7 @@ export default function Register({ switchMode }) {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center">
+        <div className="flex h-fit items-center justify-center">
             <form
                 onSubmit={handleSubmit}
                 className="bg-white p-6 rounded shadow w-80 space-y-4"

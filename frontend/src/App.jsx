@@ -1,31 +1,42 @@
-import { useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/auth-context";
-import Login from "./pages/login";
-import Register from "./pages/register";
-import Gigs from "./pages/gigs";
 import Navbar from "./components/navbar";
+import PublicGigs from "./pages/public-gigs";
+import MyGigs from "./pages/my-gigs";
+import MyBids from "./pages/my-bids";
 
-
-function Content() {
+function PrivateRoute({ children }) {
   const { user, loading } = useAuth();
-  const [mode, setMode] = useState("login");
-
   if (loading) return null;
-
-  if (user) return <Gigs />;
-
-  return mode === "login" ? (
-    <Login switchMode={() => setMode("register")} />
-  ) : (
-    <Register switchMode={() => setMode("login")} />
-  );
+  return user ? children : <Navigate to="/login" />;
 }
 
 export default function App() {
   return (
     <AuthProvider>
-      <Navbar />
-      <Content />
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<PublicGigs />} />
+          <Route
+            path="/my-gigs"
+            element={
+              <PrivateRoute>
+                <MyGigs />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/my-bids"
+            element={
+              <PrivateRoute>
+                <MyBids />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     </AuthProvider>
   );
 }
