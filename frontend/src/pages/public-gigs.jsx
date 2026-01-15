@@ -6,14 +6,16 @@ import Modal from "../components/modal";
 import AuthModal from "../components/auth/auth-modal";
 
 export default function PublicGigs() {
+    const { user } = useAuth();
     const [gigs, setGigs] = useState([]);
     const [appliedGigIds, setAppliedGigIds] = useState(new Set());
     const [showBid, setShowBid] = useState(null);
     const [showAuth, setShowAuth] = useState(false);
-    const { user } = useAuth();
+    const [search, setSearch] = useState("");
 
     async function loadGigs() {
-        const gigsData = await api("/api/gigs");
+        const query = search ? `?search=${encodeURIComponent(search)}` : "";
+        const gigsData = await api(`/api/gigs${query}`);
         setGigs(gigsData);
 
         if (user) {
@@ -26,15 +28,28 @@ export default function PublicGigs() {
 
     useEffect(() => {
         loadGigs();
-    }, [user]);
+    }, [user, search]);
 
     if (gigs.length === 0) {
-        return (<div className="p-6 space-y-6 text-gray-500">
+        return (<div className="flex flex-col p-6 space-y-6 gap-2 text-gray-500">
+            <input
+                placeholder="Search gigs by title..."
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                className="w-full md:w-1/2 border p-2 rounded"
+            />
             No gigs!
         </div>);
     } else {
         return (
             <div className="p-6 space-y-6">
+                <input
+                    placeholder="Search gigs by title..."
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
+                    className="w-full md:w-1/2 border p-2 rounded"
+                />
+
                 {/* Gig List */}
                 <div className="grid gap-4 md:grid-cols-2">
                     {gigs.map(gig => (

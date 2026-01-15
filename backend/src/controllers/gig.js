@@ -25,7 +25,11 @@ export async function getOpenGigs(req, res) {
     };
 
     if (search) {
-        query.$text = { $search: search };
+        if (search.length < 3) {
+            query.title = { $regex: `^${search}`, $options: "i" };
+        } else {
+            query.$text = { $search: search }
+        }
     }
 
     const gigs = await Gig.find(query)
